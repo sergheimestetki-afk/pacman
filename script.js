@@ -1,6 +1,29 @@
 // Game canvas and context
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+let canvas, ctx;
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    canvas = document.getElementById('gameCanvas');
+    
+    if (!canvas) {
+        console.error('Canvas element not found!');
+        return;
+    }
+    
+    ctx = canvas.getContext('2d');
+    
+    if (!ctx) {
+        console.error('2D context not available!');
+        return;
+    }
+    
+    console.log('Game initializing...');
+    
+    // Start the game only after DOM is ready
+    init();
+});
+
+// Remove the init() call from the bottom of the file
 
 // Game constants
 const GRID_SIZE = 20;
@@ -475,6 +498,11 @@ function restartGame() {
 function gameLoop() {
     if (!gameRunning) return;
     
+    if (!ctx || !canvas) {
+        console.error('Canvas or context not available in game loop!');
+        return;
+    }
+    
     // Clear canvas
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -510,5 +538,4 @@ function gameLoop() {
     setTimeout(gameLoop, 100); // ~10 FPS for classic feel
 }
 
-// Start the game
-init();
+// Game initialization moved to DOMContentLoaded event listener above
