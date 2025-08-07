@@ -42,7 +42,11 @@ body {
     margin: 0 auto;
 }
 
+
+.game-over, .level-complete {
+
 .game-over {
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -50,10 +54,22 @@ body {
     background: rgba(0, 0, 0, 0.9);
     padding: 30px;
     border-radius: 15px;
+
     border: 2px solid #ff0066;
+
     text-align: center;
     z-index: 100;
 }
+
+
+.game-over {
+    border: 2px solid #ff0066;
+}
+
+.level-complete {
+    border: 2px solid #00ff00;
+}
+
 
 .game-over h2 {
     color: #ff0066;
@@ -61,19 +77,45 @@ body {
     font-size: 2.5em;
 }
 
+
+.level-complete h2 {
+    color: #00ff00;
+    margin-top: 0;
+    font-size: 2.5em;
+}
+
+.game-over button, .level-complete button {
+
 .game-over button {
     background: linear-gradient(45deg, #ff0066, #ff3399);
+
     color: white;
     border: none;
     padding: 15px 30px;
     font-size: 18px;
     border-radius: 25px;
     cursor: pointer;
+
+    margin: 10px 5px;
+    transition: transform 0.2s;
+}
+
+.game-over button {
+    background: linear-gradient(45deg, #ff0066, #ff3399);
+}
+
+.level-complete button {
+    background: linear-gradient(45deg, #00ff00, #33ff33);
+}
+
+.game-over button:hover, .level-complete button:hover {
+
     margin-top: 15px;
     transition: transform 0.2s;
 }
 
 .game-over button:hover {
+
     transform: scale(1.05);
 }
 

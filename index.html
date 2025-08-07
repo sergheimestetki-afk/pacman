@@ -19,6 +19,16 @@
             <p>Final Score: <span id="finalScore">0</span></p>
             <button onclick="restartGame()">Play Again</button>
         </div>
+
+        <div class="level-complete" id="levelComplete" style="display: none;">
+            <h2>Level Complete!</h2>
+            <p>Congratulations! You collected all the dots!</p>
+            <p>Score: <span id="levelScore">0</span></p>
+            <p>Level: <span id="completedLevel">1</span></p>
+            <button onclick="nextLevel()">Next Level</button>
+            <button onclick="restartGame()">Restart Game</button>
+        </div>
+
         <div class="controls">
             <p>Use arrow keys to move Pac-Man</p>
             <p>Collect all pellets while avoiding ghosts!</p>

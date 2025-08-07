@@ -395,6 +395,27 @@ function gameOver() {
     document.getElementById('gameOver').style.display = 'block';
 }
 
+
+function levelComplete() {
+    gameRunning = false;
+    document.getElementById('levelScore').textContent = score;
+    document.getElementById('completedLevel').textContent = level;
+    document.getElementById('levelComplete').style.display = 'block';
+}
+
+function nextLevel() {
+    level++;
+    gameRunning = true;
+    document.getElementById('levelComplete').style.display = 'none';
+    
+    // Reset positions and restore pellets for next level
+    resetPositions();
+    restoreMazePellets();
+    countPellets();
+}
+
+function restoreMazePellets() {
+
 function restartGame() {
     // Reset game state
     score = 0;
@@ -404,6 +425,7 @@ function restartGame() {
     powerMode = false;
     powerModeTimer = 0;
     
+
     // Reset maze (restore pellets)
     for (let y = 0; y < maze.length; y++) {
         for (let x = 0; x < maze[y].length; x++) {
@@ -423,10 +445,31 @@ function restartGame() {
     maze[2][38] = 3;
     maze[16][1] = 3;
     maze[16][38] = 3;
+
+}
+
+function restartGame() {
+    // Reset game state
+    score = 0;
+    lives = 3;
+    level = 1;
+    gameRunning = true;
+    powerMode = false;
+    powerModeTimer = 0;
+    
+    restoreMazePellets();
+    resetPositions();
+    countPellets();
+    
+    // Hide all screens
+    document.getElementById('gameOver').style.display = 'none';
+    document.getElementById('levelComplete').style.display = 'none';
+
     
     resetPositions();
     countPellets();
     document.getElementById('gameOver').style.display = 'none';
+
 }
 
 function gameLoop() {
@@ -452,10 +495,15 @@ function gameLoop() {
     
     // Check win condition
     if (pelletsRemaining <= 0) {
+
+        levelComplete();
+        return;
+
         level++;
         // Reset level with faster ghosts or more challenge
         resetPositions();
         countPellets();
+
     }
     
     // Continue game loop
